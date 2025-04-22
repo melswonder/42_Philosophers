@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:00:33 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/21 17:53:06 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/22 13:45:44 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,36 @@ long	ft_atol(const char *nptr)
 	if (ret > INT_MAX || ret < INT_MIN)
 		error_exit("LIMIT_ERROR int");
 	return (ret);
+}
+
+int	is_disit(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
+				j++;
+			else
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+bool	simulation_finished(t_table *table)
+{
+	return (get_bool(&table->table_mutex, &table->end_simulation));
+}
+
+void	wait_all_threads(t_table *table)
+{
+	while (get_bool(&table->table_mutex, &table->all_threads_redy))
+		;
 }

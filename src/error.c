@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:01:53 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/21 17:02:54 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:06:43 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	error_exit(char *str)
 	exit(1);
 }
 
-static void	mutex_handle_error(int status, t_opcode opcode)
+void	mutex_handle_error(int status, t_opcode opcode)
 {
 	if (status == 0)
 		return ;
-	if (EINVAL == status && opcode == LOCK || opcode == UNLOCK)
+	if ((EINVAL == status && opcode == LOCK) || opcode == UNLOCK)
 		error_exit("Mutex lock failed: maximum recursive locks exceeded.");
 	else if (EINVAL == status && INIT == opcode)
 		error_exit("The mutex has not been properly initialized");
@@ -36,7 +36,7 @@ static void	mutex_handle_error(int status, t_opcode opcode)
 		error_exit("The mutex is currently locked.");
 }
 
-static void	handle_thread_error(int status, t_opcode opecode)
+void	handle_thread_error(int status, t_opcode opecode)
 {
 	// error	がない時はそのまま終わる
 	if (status == 0)

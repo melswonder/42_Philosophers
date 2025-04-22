@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:04:28 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/21 17:03:01 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:21:23 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 	if (opcode == CREATE)
 		handle_thread_error(pthread_create(thread, NULL, foo, data), opcode);
 	else if (opcode == JOIN)
-		handle_thread_error(pthread_join(thread, NULL), opcode);
+		handle_thread_error(pthread_join(*thread, NULL), opcode);
 	else if (opcode == DETACH)
-		handle_thread_error(pthread_detach(thread), opcode);
+		handle_thread_error(pthread_detach(*thread), opcode);
 	else
 		error_exit("wrong handle:use <CREATE> <JOIN> <DETACH>");
 }
