@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:12:25 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 16:04:48 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:14:43 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ long					ft_atol(const char *nptr);
 int						is_disit(char **argv);
 bool					simulation_finished(t_table *table);
 void					wait_all_threads(t_table *table);
+void					*ft_memset(void *s, int c, size_t n);
 
 //---error
 int						error_exit(char *str);

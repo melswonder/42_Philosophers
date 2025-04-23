@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:00:33 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 17:02:47 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:13:17 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ int	is_disit(char **argv)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+	unsigned char	char_c;
+
+	ptr = (unsigned char *)s;
+	char_c = (unsigned char)c;
+	while (n--)
+	{
+		*ptr = char_c;
+		ptr++;
+	}
+	return ((void *)s);
 }
 
 bool	simulation_finished(t_table *table)
