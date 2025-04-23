@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:01:53 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/22 18:06:43 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 15:17:54 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	mutex_handle_error(int status, t_opcode opcode)
 
 void	handle_thread_error(int status, t_opcode opecode)
 {
-	// error	がない時はそのまま終わる
 	if (status == 0)
 		return ;
 	if (opecode == EAGAIN)

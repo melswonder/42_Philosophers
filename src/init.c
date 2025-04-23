@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:01:38 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/22 18:47:19 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:02:08 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	philo_init(t_table *table)
 		philo->full = false;
 		philo->meals_counter = 0;
 		philo->table = table;
+		philo->last_meals_time = 0;
 		safe_mutex_handle(&philo->philo_mutex, INIT);
 		assign_forks(philo, table->forks, i);
 		i++;
@@ -55,7 +56,7 @@ void	data_init(t_table *table)
 	table->philos = safe_malloc(sizeof(t_philo) * table->philo_nbr);
 	safe_mutex_handle(&table->table_mutex, INIT);
 	table->forks = safe_malloc(sizeof(t_fork) * table->philo_nbr);
-	safe_mutex_handle(&table->write_lock, INIT);	
+	safe_mutex_handle(&table->write_lock, INIT);
 	i = 0;
 	while (i < table->philo_nbr)
 	{
@@ -69,8 +70,8 @@ void	data_init(t_table *table)
 
 void	parse_input(t_table *table, char **argv)
 {
-	// if (is_disit(argv))
-	// 	error_exit("error invalid input");
+	if (is_disit(argv))
+		error_exit("error invalid input");
 	table->philo_nbr = ft_atol(argv[1]);
 	table->time_to_die = ft_atol(argv[2]) * CONVERT_MICRO;
 	table->time_to_eat = ft_atol(argv[3]) * CONVERT_MICRO;

@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:00:33 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/22 13:45:44 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:02:47 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_disit(char **argv)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		j = 0;
@@ -66,8 +66,9 @@ bool	simulation_finished(t_table *table)
 	return (get_bool(&table->table_mutex, &table->end_simulation));
 }
 
+// spinlock
 void	wait_all_threads(t_table *table)
 {
-	while (get_bool(&table->table_mutex, &table->all_threads_redy))
+	while (!get_bool(&table->table_mutex, &table->all_threads_redy))
 		;
 }

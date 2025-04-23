@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:12:25 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/22 18:47:03 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/23 16:04:48 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define ERROR 1
 #define OK 0
 #define CONVERT_MICRO 1e3
-#define DIE 200
+#define DIE 1000
 
 typedef pthread_mutex_t	t_mtx;
 
@@ -119,7 +119,7 @@ void					parse_input(t_table *table, char **argv);
 
 //---dinner---
 bool					all_theread_running(t_mtx *mutex,
-							long threads_running_nbr, long philo_nbr);
+							long *threads_running_nbr, long philo_nbr);
 void					de_synchronize_philos(t_philo *philo);
 void					clean(t_table *table);
 void					increase_long(t_mtx *mutex, long *value);
@@ -132,7 +132,7 @@ long					get_time(t_time_code time_code);
 
 //---philo
 void					eat(t_philo *philo);
-void					thinking(t_philo *philo, bool per_simulation);
+void					thinking(t_philo *philo);
 void					write_status(t_philo_status status, t_philo *philo);
 bool					philo_died(t_philo *philo);
 void					precise_usleep(long usec, t_table *table);
