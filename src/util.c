@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:00:33 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 17:13:17 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:55:23 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ long	ft_atol(const char *nptr)
 			nptr++;
 		}
 		else
-			error_exit("parce error");
+			return (error_msg("parce error"));
 	}
 	ret = ret * m_flag;
 	if (ret > INT_MAX || ret < INT_MIN)
-		error_exit("LIMIT_ERROR int");
+		return (error_msg("LIMIT_ERROR int"));
 	return (ret);
 }
 

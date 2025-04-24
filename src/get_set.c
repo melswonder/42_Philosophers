@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 13:29:31 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 15:17:21 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:54:09 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ long	get_time(t_time_code time_code)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		error_exit("gettimeofday faild");
+		error_msg("gettimeofday faild");
 	if (time_code == SECOND)
 		return (tv.tv_sec + (tv.tv_usec / 1000000));
 	else if (time_code == MILLISECOND)
@@ -59,6 +59,6 @@ long	get_time(t_time_code time_code)
 	else if (time_code == MICROSECOND)
 		return ((tv.tv_sec * 1000000) + tv.tv_usec);
 	else
-		error_exit("timecode select faild");
+		error_msg("timecode select faild");
 	return (1);
 }

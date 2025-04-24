@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 12:04:28 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/22 18:21:23 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:54:09 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*safe_malloc(size_t bytes)
 
 	ret = malloc(bytes);
 	if (ret == NULL)
-		error_exit("Error in malloc");
+		error_msg("Error in malloc");
 	return (ret);
 }
 
@@ -33,7 +33,7 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode)
 	else if (opcode == DESTROY)
 		mutex_handle_error(pthread_mutex_destroy(mutex), opcode);
 	else
-		error_exit("Wrong opcode");
+		error_msg("Wrong opcode");
 }
 
 void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
@@ -46,5 +46,5 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 	else if (opcode == DETACH)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
-		error_exit("wrong handle:use <CREATE> <JOIN> <DETACH>");
+		error_msg("wrong handle:use <CREATE> <JOIN> <DETACH>");
 }

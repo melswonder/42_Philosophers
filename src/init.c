@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:01:38 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 17:02:08 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:58:40 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ void	data_init(t_table *table)
 	philo_init(table);
 }
 
-void	parse_input(t_table *table, char **argv)
+int	parse_input(t_table *table, char **argv)
 {
 	if (is_disit(argv))
-		error_exit("error invalid input");
+	{
+		error_msg("error invalid input");
+		return (1);
+	}
 	table->philo_nbr = ft_atol(argv[1]);
 	table->time_to_die = ft_atol(argv[2]) * CONVERT_MICRO;
 	table->time_to_eat = ft_atol(argv[3]) * CONVERT_MICRO;
@@ -80,4 +83,8 @@ void	parse_input(t_table *table, char **argv)
 		table->number_of_meals = ft_atol(argv[5]);
 	else
 		table->number_of_meals = -1;
+	if (table->philo_nbr == -1 || table->time_to_die == -1
+		|| table->time_to_eat == -1 || table->time_to_sleep == -1)
+		return (1);
+	return (0);
 }

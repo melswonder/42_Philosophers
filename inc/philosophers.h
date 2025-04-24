@@ -6,7 +6,7 @@
 /*   By: hirwatan <hirwatan@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:12:25 by hirwatan          #+#    #+#             */
-/*   Updated: 2025/04/23 17:14:43 by hirwatan         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:57:35 by hirwatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void					wait_all_threads(t_table *table);
 void					*ft_memset(void *s, int c, size_t n);
 
 //---error
-int						error_exit(char *str);
+int						error_msg(char *str);
 void					mutex_handle_error(int status, t_opcode opcode);
 void					safe_thread_handle(pthread_t *thread,
 							void *(*foo)(void *), void *data, t_opcode opcode);
@@ -116,7 +116,7 @@ void					data_init(t_table *table);
 void					philo_init(t_table *table);
 void					assign_forks(t_philo *philo, t_fork *forks,
 							int p_possion);
-void					parse_input(t_table *table, char **argv);
+int						parse_input(t_table *table, char **argv);
 
 //---dinner---
 bool					all_theread_running(t_mtx *mutex,
